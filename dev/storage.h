@@ -250,6 +250,16 @@ namespace sqlite_orm {
             pragma(*this),
             limit(*this)
             {}
+
+            storage_t(storage_t&& other):
+            filename(std::move(other.filename)),
+            impl(other.impl),
+            currentTransaction(std::move(other.currentTransaction)),
+            inMemory(other.inMemory),
+            collatingFunctions(std::move(other.collatingFunctions)),
+            pragma(*this),
+            limit(*this)
+            {}
             
         protected:
             using collating_function = std::function<int(int, const void*, int, const void*)>;
